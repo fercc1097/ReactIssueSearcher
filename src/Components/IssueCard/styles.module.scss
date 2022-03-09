@@ -1,0 +1,51 @@
+
+.container{
+    height: 100px;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px 0;
+
+    &:hover{
+        background-color: rgb(226, 226, 226);
+    }
+    
+    .link{
+        cursor: pointer;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: black;
+        text-decoration: none;
+        .title{
+            font-size: 18px;
+            font-weight: normal;
+            width: 230px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    
+    .content{
+        
+        display: flex;
+        
+    }
+    .username{
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 10px;
+    }
+    
+    .image{
+     object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    margin: 10px;
+    }
+    .labelContainer{
+        display: flex;
+        .labelText{
+            font-size: 10px;
+            margin: 0 5px;
+        }
+    }
+}

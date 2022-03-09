@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { CardContainer, TextField } from './Components';
+import { useState, useEffect } from 'react';
+import './App.scss';
 
 function App() {
+
+  const rootUrl = 'https://api.github.com/repos/facebook/react/issues';
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [data, setData] = useState('');
+  const [filteredData, setFilteredData] = useState('');
+
+  async function fetchIssues() {
+    fetch(rootUrl).then(response => response.json()).then(parsedResponse => setData(parsedResponse));
+  }
+
+  useEffect(async () => {
+    await fetchIssues();
+  }
+    , []);
+
+  useEffect(() => {
+    if (!searchTerm) {
+      setFilteredData(data.slice(0, 5));
+    } else {
+      const results = data.filter(issue => issue?.title.toLowerCase().includes(searchTerm.toLowerCase()));
+      const firstFiveElements = results.slice(0, 5);
+      setFilteredData(firstFiveElements);
+    }
+  }
+    , [searchTerm]);
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TextField handleState={setSearchTerm} />
+      <CardContainer data={filteredData} />
     </div>
   );
 }
 
 export default App;
+
+//anuar.morales@venafi.com
